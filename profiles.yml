@@ -1,0 +1,16 @@
+
+dbt_project:
+  outputs:
+
+    dev:
+      type: postgres
+      threads: 4
+      host: localhost
+      port: 5432
+      user: "{{ env_var('PS_USER') }}"
+      pass: "{{ env_var('PS_PASSWORD') }}"
+      dbname: "{{ env_var('PS_DB') }}"
+      schema: public
+
+
+  target: dev
