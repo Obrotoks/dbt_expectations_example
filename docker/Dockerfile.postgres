@@ -1,0 +1,2 @@
+ARG PS_VERSION
+FROM postgres:${PS_VERSION}

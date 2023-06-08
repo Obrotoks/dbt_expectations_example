@@ -1,0 +1,31 @@
+
+version: '3.9'
+volumes:
+  db-data:
+    name: "data_postres"
+    driver: local
+      
+services:
+  post_db:
+    build: 
+      context: ./docker
+      dockerfile: Dockerfile.postgres
+      args:
+        - PS_VERSION=${PS_VERSION}
+    user: postgres
+    image: postgres/test:v1
+    environment:
+      - POSTGRES_USER=${PS_USER}
+      - POSTGRES_PASSWORD=${PS_PASSWORD}
+      - PG_DATA:/var/lib/postgresql/data/pgdata
+      - POSTGRES_DB=${PS_DB}
+    healthcheck:
+      test: ["CMD-SHELL","pg_isready -U ${PS_USER} ${PS_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    restart: unless-stopped
