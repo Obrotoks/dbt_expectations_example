@@ -8,7 +8,7 @@ volumes:
 services:
   post_db:
     build: 
-      context: ./docker
+      context: .
       dockerfile: Dockerfile.postgres
       args:
         - PS_VERSION=${PS_VERSION}
@@ -29,3 +29,11 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
     restart: unless-stopped
+  dbt_python:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+      args:
+        - PY_VERSION=${PY_VERSION}
+    depends_on:
+      - post_db
