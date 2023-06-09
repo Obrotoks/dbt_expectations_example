@@ -37,4 +37,8 @@ RUN chmod a+r /app/start.sh
 
 WORKDIR /app/dbt_post
 # Start the dbt RPC server
-CMD ["dbt","debug"]
+## Install package
+CMD ["dbt","deps"]
+
+## Upload csv
+CMD ["dbt","seed"]
