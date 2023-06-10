@@ -5,7 +5,7 @@ dbt_project:
     dev:
       type: postgres
       threads: 4
-      host: localhost
+      host: post_db
       port: 5432
       user: ps
       pass: ps_2023
@@ -15,27 +15,3 @@ dbt_project:
 
   target: dev
 
-dbt_test:
-  outputs:
-
-    dev:
-      type: postgres
-      threads: [1 or more]
-      host: [host]
-      port: [port]
-      user: [dev_username]
-      pass: [dev_password]
-      dbname: [dbname]
-      schema: [dev_schema]
-
-    prod:
-      type: postgres
-      threads: [1 or more]
-      host: [host]
-      port: [port]
-      user: [prod_username]
-      pass: [prod_password]
-      dbname: [dbname]
-      schema: [prod_schema]
-
-  target: dev

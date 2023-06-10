@@ -31,39 +31,8 @@ clean-targets:         # directories to be removed by `dbt clean`
 # directory as views. These settings can be overridden in the individual model
 # files using the `{{ config(...) }}` macro.
 
-name: ginf_seed
+
 seeds:
-  ginf_seed:
-    +schema: raw
-    enabled: True
-    ginf:
-      +column_types:
-        id_odsp: varchar(10)
-        link_odsp: varchar(90)
-        adv_stats: bool
-        date: date
-        league: varchar(4)
-        season: int
-        ht: varchar(30)
-        at: varchar(30)
-        odd_h: float
-        odd_d: float
-        odd_a: float
-        odd_over: varchar(5)
-        odd_under: varchar(5)
-        odd_bts: varchar(5)
-        odd_bts_n: varchar(5)
-
-models:
-  ginf_model:
-
-    - name: Country
-      columns:
-        - name: country
-          test:
-            - dbt_expectations.expect_column_values_to_be_unique
-
-
-
+  +schema: src
 
 

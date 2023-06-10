@@ -27,18 +27,10 @@ COPY profiles.yml /root/.dbt/profiles.yml
 
 # Copy source code
 COPY dbt_project/ /app
-# Copy env
-
-COPY .envDocker /app/.env
-COPY start.sh /app
-
-RUN chmod a+r /app/start.sh
 
 
 WORKDIR /app/dbt_post
-# Start the dbt RPC server
-## Install package
-CMD ["dbt","deps"]
 
-## Upload csv
-CMD ["dbt","seed"]
+# Run 1- Install package + import data + check data 
+CMD ["/bin/bash", "-c", "dbt deps;dbt seed;dbt test"]
+

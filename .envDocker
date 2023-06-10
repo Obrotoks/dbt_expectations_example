@@ -1,6 +1,0 @@
-
-PS_VERSION=15
-PS_USER=ps
-PS_PASSWORD=ps_2023
-PS_DB=RAW 
-PY_VERSION=3.9-slim-buster

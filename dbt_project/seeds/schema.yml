@@ -1,0 +1,30 @@
+version: 2
+
+seeds:
+  - name: ginf
+    column_types:
+      id_odsp: varchar(10)
+      link_odsp: varchar(90)
+      adv_stats: bool
+      date: date
+      league: varchar(4)
+      season: int
+      ht: varchar(30)
+      at: varchar(30)
+      odd_h: float
+      odd_d: float
+      odd_a: float
+      odd_over: varchar(5)
+      odd_under: varchar(5)
+      odd_bts: varchar(5)
+      odd_bts_n: varchar(5)
+    columns:
+      - name: id_odsp
+        tests:
+          - dbt_expectations.expect_column_values_to_be_unique
+          - not_null
+      - name: season
+        tests:
+          - unique:
+              config:
+                store_failures: true  
