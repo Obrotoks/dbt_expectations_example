@@ -5,7 +5,7 @@ dbt_project:
     dev:
       type: postgres
       threads: 4
-      host: post_db
+      host: localhost
       port: 5432
       user: ps
       pass: ps_2023
